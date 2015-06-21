@@ -36,16 +36,17 @@ cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'inv'
           inv <- x$getinv()
           
+          ## check to see if inverse is cached first if so return from cache
           if(!is.null(inv)) {
                message("getting cached data")
                return(inv)
           }
           
-          data <- x$get()
+          data <- x$get() ## get matrix from makeCacheMatrix function
           
-          inv <- solve(data)
+          inv <- solve(data) ## inverse does not exist in cache, solve inverse
           
-          x$setinv(inv)
+          x$setinv(inv) ## set value of inverse using makeCacheMatrix function
           
           inv
 }
